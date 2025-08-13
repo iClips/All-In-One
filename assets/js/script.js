@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fetch('api/is_auth.php', {
         method: 'POST',
-        body: formData,
         credentials: 'include' // Send cookies
     })
     .then(response => response.json())
