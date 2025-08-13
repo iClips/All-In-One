@@ -1,0 +1,310 @@
+:root {
+	--col-side-menu: #0e0c0c;
+	--col-background: #000;
+	--col-text: #fff;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	background: var(--col-text);
+	color: var(--col-background);
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+header {
+	position: relative;
+	background: var(--col-background);
+	color: var(--col-text);
+	padding: 6px 12px;
+	text-align: center;
+	box-shadow: 0 2px 4px rgba(156, 0, 0, 0.596);
+}
+
+/******************** side menu ********************/
+.menu-button {
+	position: absolute;
+	top: calc(50% - 12px);
+	left: 1rem;
+	cursor: pointer;
+	z-index: 1001;
+	width: 30px;
+	height: 24px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.menu-button div {
+	width: 100%;
+	height: 4px;
+	background: var(--col-text);
+	border-radius: 2px;
+	transition: transform 0.4s, opacity 0.4s;
+}
+
+/* When menu is open, animate to X */
+.menu-button.open div:nth-child(1) {
+	transform: translateY(10px) rotate(45deg);
+}
+
+.menu-button.open div:nth-child(2) {
+	opacity: 0;
+}
+
+.menu-button.open div:nth-child(3) {
+	transform: translateY(-10px) rotate(-45deg);
+}
+
+.side-menu {
+	position: fixed;
+	top: 0;
+	left: -280px;
+	width: 280px;
+	height: 100vh;
+	background-color: var(--col-side-menu);
+	box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	transition: left 0.3s ease;
+	padding-top: 80px;
+}
+
+.side-menu.open {
+	left: 0;
+}
+
+.menu-section {
+	border-bottom: 2px solid #ccc;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.menu-item {
+	color: var(--col-text);
+	display: flex;
+	align-items: center;
+	padding: 10px;
+	color: var(--col-text);
+	cursor: pointer;
+	font-size: 28px;
+}
+
+.menu-item:hover,
+.menu-item:hover i {
+	background: #f0f0f0;
+	color: var(--col-side-menu);
+}
+
+.menu-item .icon {
+	margin-right: 18px;
+	color: var(--col-text);
+	width: 20px;
+	font-size: 24px;
+	text-align: center;
+}
+
+/******************** /side menu ********************/
+
+
+/******************** Body ********************/
+
+main {
+	padding: 2rem;
+}
+
+section {
+	margin-bottom: 2rem;
+	border: 1px solid #ccc;
+	padding: 1rem;
+	border-radius: 8px;
+	display: none;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+form input {
+	display: block;
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid var(--col-background);
+}
+
+button {
+	background: var(--col-background);
+	color: var(--col-text);
+	padding: 0.5rem 1rem;
+	border: none;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+button:hover {
+	opacity: 0.8;
+}
+
+#floating-action-button {
+	position: fixed;
+	bottom: 40px;
+	right: 40px;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	color: white;
+	border: none;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 215, 0, 0.15);
+	font-size: 34px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	overflow: hidden;
+	z-index: 1000;
+	outline: none;
+	-webkit-tap-highlight-color: transparent;
+	/* THIS */
+	user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+#floating-action-button:focus,
+#floating-action-button:active {
+	outline: none;
+	background: linear-gradient(145deg, #111, #222);
+	/* keep solid black */
+	opacity: 1;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 215, 0, 0.15);
+}
+
+#floating-action-button:active {
+	transform: scale(1.2);
+}
+
+#floating-action-button::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.08);
+	transform: translate(-50%, -50%) scale(0);
+	opacity: 0;
+	transition: transform 0.3s ease-out, opacity 0.4s ease-out;
+}
+
+
+
+#floating-action-button:active::after {
+	transform: translate(-50%, -50%) scale(1.8);
+	opacity: 1;
+	transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+
+/******************** /Body ********************/
+
+/************** Responsive *****************/
+
+
+@media (max-width: 600px) {
+	button {
+		padding: 8px 16px;
+	}
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+	main {
+		padding: 1rem;
+	}
+
+	section {
+		padding: 0.75rem;
+	}
+}
+
+@media (max-width: 768px) {
+	header h1 {
+		font-size: 1.25rem;
+	}
+
+	.menu-button {
+		width: 25px;
+		height: 20px;
+	}
+
+	#floating-action-button {
+		width: 60px;
+		height: 60px;
+		font-size: 24px;
+		bottom: 20px;
+		right: 20px;
+	}
+
+	.menu-item {
+		padding: 8px;
+		font-size: 0.9rem;
+	}
+
+	.menu-item .icon {
+		margin-right: 18px;
+        font-size: 20px;
+	}
+}
+
+@media (max-width: 600px) {
+	header h1 {
+		font-size: 1rem;
+	}
+
+	#floating-action-button {
+		width: 50px;
+		height: 50px;
+		font-size: 20px;
+		bottom: 15px;
+		right: 15px;
+	}
+
+    section {
+		margin-bottom: 1rem;
+	}
+
+	.side-menu {
+		width: 200px;
+	}
+
+	form input {
+		font-size: 14px;
+		padding: 0.4rem;
+	}
+}
+
+@media (max-width: 400px) {
+	header h1 {
+		font-size: 0.9rem;
+	}
+
+	.menu-button {
+		width: 22px;
+		height: 18px;
+	}
+
+	.menu-item {
+		font-size: 0.8rem;
+	}
+
+	#floating-action-button {
+		width: 45px;
+		height: 45px;
+		font-size: 18px;
+	}
+}
+
+/************** /Responsive *****************/
