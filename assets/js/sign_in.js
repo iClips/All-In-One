@@ -12,7 +12,7 @@ document.getElementById('sign-in-form').addEventListener('submit', function(e) {
     .then(data => {
         console.log(JSON.stringify(data));
         if (data.success) {
-            window.location.href = 'dashboard.php';
+            window.location.href = 'dashboard.html';
         } else {
             alert(data.message);
         }
