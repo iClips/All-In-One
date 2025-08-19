@@ -1,8 +1,8 @@
 document.getElementById('sign-in-form').addEventListener('submit', function(e) {
     e.preventDefault();
-
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const formData = new FormData(this);
-
+    formData.append('csrf_token', csrfToken);
     fetch('/api/sign_in.php', {
         method: 'POST',
         body: formData,
@@ -10,7 +10,6 @@ document.getElementById('sign-in-form').addEventListener('submit', function(e) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(JSON.stringify(data));
         if (data.success) {
             window.location.href = 'dashboard.html';
         } else {

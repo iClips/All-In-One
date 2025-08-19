@@ -1,16 +1,26 @@
+<?phpb 
+    if (session_status() !== PHP_SESSION_ACTIVE) session_start([
+        'cookie_httponly' => true,
+        'cookie_secure' => true,
+        'use_strict_mode' => true,
+    ]);
+
+    if (!isset($_SESSION['SignedIn']) || !isset($_SESSION['csrf_token'])) {
+        header('Location: index.php');
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?= $_SESSION['csrf_token'] ?>">
     <title>All In One</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-
 </head>
-
+</html>
 <body>
     <header>
         <!-- Burger Menu Button -->
