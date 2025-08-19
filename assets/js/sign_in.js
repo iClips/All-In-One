@@ -3,7 +3,7 @@ document.getElementById('sign-in-form').addEventListener('submit', function(e) {
 
     const formData = new FormData(this);
 
-    fetch('api/sign_in.php', {
+    fetch('/api/sign_in.php', {
         method: 'POST',
         body: formData,
         credentials: 'include' // Send cookies

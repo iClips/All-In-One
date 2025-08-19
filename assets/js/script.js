@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	initClickListeners();
 
-    fetch('api/is_auth.php', {
+    fetch('/api/is_auth.php', {
         method: 'POST',
         credentials: 'include' // Send cookies
     })
