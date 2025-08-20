@@ -3,7 +3,7 @@ document.getElementById('sign-in-form').addEventListener('submit', function(e) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const formData = new FormData(this);
     formData.append('csrf_token', csrfToken);
-    fetch('../../api/sign_in.php', {
+    fetch('api/sign_in.php', {
         method: 'POST',
         body: formData,
         credentials: 'include' // Send cookies
